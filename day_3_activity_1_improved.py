@@ -10,12 +10,12 @@ class GradingSys():
     def __init__(self, fname, lname, math,science ,english ):
         #=====Varibles=====#
 
-        #First name Last name
+        #first name last name
 
         self.fname = str(fname)
         self.lname = str(lname)
 
-        #Grades
+        #grades
         self.math = float(math)
         self.science = float(science)
         self.english = int(english)
@@ -24,8 +24,6 @@ class GradingSys():
 
     def run(self):
         #calculate the grades
-        #calculate grade divide by how many subs increment by sub nalang po if mag dadagdag
-
         print(f"Name : {self.fname} {self.lname}")
         self.calculate = self.math + self.english + self.science
         self.calculate /= 3
@@ -35,14 +33,24 @@ class GradingSys():
         print(f"Science : {self.science}")
         print(f"English : {self.english}")
         
-        #check if passed
+        #logic if nka pasa or bagsak sa isang sub
 
-        if self.calculate > 74:
-            self.status = "Passed"
-        else:
+        if self.calculate > 74 and self.math < 75:
+            print("Congratulations! you passed the semester. But you need to re-enroll Math")
+        
+        if self.calculate > 74 and self.science < 75:
+            print("Congratulations! you passed the semester. But you need to re-enroll Science")
+
+        if self.calculate > 74 and self.english < 75:
+            print("Congratulations! you passed the semester. But you need to re-enroll English")
+
+        elif self.calculate < 75:
             self.status = "Failed"
 
-        print(f"Grade : {round(self.calculate, 1)} | Status  : {self.status}")
+        else:
+            self.status = "Passed"
+
+        print(f"Final Grade : {round(self.calculate, 1)} | Status  : {self.status}")
 
 #run
             #Name  #LastName  #Math Science English

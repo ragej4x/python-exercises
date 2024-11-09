@@ -2,7 +2,7 @@
 
 name = str("Jack Cole") #Name
 
-#Grades
+#grades
 math = float(75)
 science = float(76)
 english = int(75)

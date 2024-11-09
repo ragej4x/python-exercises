@@ -1,16 +1,16 @@
-#Variables
+#variables
 
 name = str("Jack Cole") #Name
 
-#Grades
+#grades
 math = float(73)
 science = float(76)
 english = int(75)
-#Calculate grade divide by how many subs
+#calculate grade divide by how many subs increment by sub nalang po if mag dadagdag
 average = float(math + science + english) / 3
 
 
-#Output
+#output
 print(f"Name : {name}")
 
 print(f"Math : {math}")
