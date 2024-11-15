@@ -92,7 +92,8 @@ class BarberShop:
         while True:
             self.customer_ready.wait()
             self.customer_ready.clear()
-            
+            #barber room
+
             while not self.waiting_room.empty():
                 self.active_customer = self.waiting_room.get()
                 self.active_customer.getting_haircut = True
@@ -120,21 +121,37 @@ class BarberShop:
                 self.customers.remove(customer)
 
     def draw(self, screen):
+        #pinto
+        pygame.draw.rect(screen,(255,190,190,10), (350, 150, 10, 150))
+        #barberroom
+        pygame.draw.rect(screen, (190, 190, 190, 10), (560,160, 90,190))
+        #chair
+        pygame.draw.rect(screen, (90, 90, 190), (390,170, 20,20))
+        pygame.draw.rect(screen, (90, 90, 190), (390,170 *1.24, 20,20))
+        pygame.draw.rect(screen, (90, 90, 190), (390,170 *1.48, 20,20))
+
         for wall in WALLS:
             pygame.draw.rect(screen, WALL_COLOR, wall)
 
         #status text ubtu
         barber_color = RED if self.barber_busy else BLUE
-        pygame.draw.rect(screen, barber_color, (*self.barber_chair, CUSTOMER_SIZE, CUSTOMER_SIZE))
+        #BARDER
+        pygame.draw.circle(screen, barber_color, self.barber_chair , 10)
+
 
         font = pygame.font.Font(None, 28)
+        client_label = font.render('Customer', True, GREEN)
+
         status_text = "Working" if self.barber_busy else "Sleeping"
         status_text_surface = font.render(status_text, True, BLACK)
+
         screen.blit(status_text_surface, (self.barber_chair[0] - 30, self.barber_chair[1] + 30))
 
         for customer in self.customers:
             color = GREEN if customer.waiting else BLACK
             pygame.draw.circle(screen, color, (int(customer.pos[0]), int(customer.pos[1])), CUSTOMER_SIZE // 2)
+
+            screen.blit(client_label, (int(customer.pos[0]) - 50, int(customer.pos[1]) + 10))
 
             if customer.lost:
                 pygame.draw.circle(screen, RED, (int(customer.pos[0]), int(customer.pos[1]) - 10), 5)
